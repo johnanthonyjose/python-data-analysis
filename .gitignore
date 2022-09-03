@@ -1,0 +1,9 @@
+.pytest_cache
+bin
+**/__pycache__
+*.dSYM
+log.json
+ex*
+!extensions.json
+**/.venv
+**/*.pyc
