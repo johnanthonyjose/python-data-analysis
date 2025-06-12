@@ -7,3 +7,4 @@ ex*
 !extensions.json
 **/.venv
 **/*.pyc
+**/.ipynb_checkpoints/
