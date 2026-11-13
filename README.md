@@ -35,6 +35,15 @@ below it: it prints ✅ when you are right, or ❌ with a hint. It never crashes
 the notebook, so you can always "Run All". Each exercise has a collapsed
 **Show solution** block — try first, peek second.
 
+## Visual and interactive explanations
+
+The pandas notebooks (08–13) are built to be *seen*, not just read: highlighted tables
+show which rows and columns a selection picks, boolean masks appear as ✓/✗ columns,
+group-by is drawn as split → apply → combine, and sliders and dropdowns let you
+experiment live. The helpers live in `src/course_viz/` (installed by `uv sync`).
+Notebooks ship without saved outputs, so run the cells to see the visuals —
+they are designed for both light and dark JupyterLab themes.
+
 ## For maintainers
 
 ```bash
