@@ -26,7 +26,8 @@ the right Python and every library for you.
    ```
 4. Open `Module1_Basics/01_Variables_and_Expressions.ipynb` and start learning.
 
-Dependencies are pinned in `uv.lock`, so everyone gets identical versions.
+Dependencies are pinned in `uv.lock`, so everyone gets identical versions. (Python 3.13 is
+downloaded for you by uv if you don't have it.)
 
 ## How the exercises work
 
@@ -52,3 +53,23 @@ uv run nbstripout --install                # optional: strip outputs on commit
 ```
 
 Add a library with `uv add <package>`, then commit `pyproject.toml` and `uv.lock`.
+
+### How this course reaches students (JupyterHub)
+
+The hub's student image is **built from this repository**: it installs the runtime
+`dependencies` from `uv.lock` plus the `course_checks` / `course_viz` package from `src/`
+(the `lab` and `dev` groups are authoring tools and stay out of it). Publishing builds that
+image tagged with this repo's commit, runs `tools/verify_notebooks.py` **inside it** with no
+network, and only then releases the notebooks — so a notebook can never reach students
+without the exact environment it was tested in.
+
+```bash
+# on the hub host (jupyter-spark repo):
+scripts/add_course.sh git@github.com:<owner>/python-data-analysis.git --flat   # pull latest into staging
+make publish-preview      # build the image, verify inside it, show what would change; publishes nothing
+make publish              # build + verify + release (image tag course-<commit>)
+make publish-status       # is what students have the latest commit?
+```
+
+Only folders containing notebooks are published (`Module*/`, with their data files). Keep
+shared code in `src/` and never import from a path outside the notebook folders.
