@@ -29,6 +29,9 @@ dev = [
 [tool.uv]
 # `uv sync` installs the runtime + lab + dev groups: everything needed to learn, author and verify locally.
 default-groups = ["lab", "dev"]
+# The student image also carries botocore (via the AI chat panel), which requires python-dateutil<3; pandas works with it.
+# Found by `pip check` inside the image during publishing. Drop this once botocore allows dateutil 4.
+constraint-dependencies = ["python-dateutil<3"]
 
 [build-system]
 requires = ["hatchling"]
